@@ -1,0 +1,20 @@
+<!--引用模板 可以使用相对路径，也可以使用绝对路径-->
+<import src="post-item/post-item-template.wxml" />
+
+<view>
+    <swiper indicator-dots="true" autoplay="true" interval="5000">
+        <swiper-item><image src="/images/swiper/iqiyi.png"></image></swiper-item>
+        <swiper-item><image src="/images/swiper/vr.png"></image></swiper-item>
+        <swiper-item><image src="/images/swiper/wx.png"></image></swiper-item>
+    </swiper>
+
+    <block wx:for="{{postData}}" wx:for-item="post" wx:for-index="index" wx:key="index">
+
+        <!--将postId放在data数据集-->
+        <view catchtap="onPostTap" data-post-id="{{post.postId}}">
+        
+            <!--is指的是模板名字 data没有代理数据 使用...展开数据对象-->
+            <template is="postItem" data="{{...post}}" />
+        </view>
+    </block>
+</view>
